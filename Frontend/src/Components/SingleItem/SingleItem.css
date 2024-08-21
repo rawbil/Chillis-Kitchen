@@ -1,0 +1,72 @@
+.single-item {
+    background: #fff;
+    display: flex;
+    height: 200px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.single-item .main-img {
+    width: 200px;
+    max-width: 50%;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+}
+
+.single-item .content {
+    flex: 1;
+    padding: 10px;
+    padding-left: 30px;
+    font-family: "Outfit", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-item .content h2 {
+    padding-bottom: 10px;
+}
+
+.single-item .content .description {
+    font-family: "Outfit", sans-serif;
+    padding-bottom: 10px;
+}
+
+.single-item .content .price {
+    padding-bottom: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.single-item .content .buttons {
+    align-self: flex-end;
+}
+
+.single-item .add-white {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px;
+    border-radius: 50%;
+}
+
+.single-item .add-remove img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.single-item .add-remove p {
+    font-weight: 600;
+}
+
+.single-item .add-remove {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 2px 2px 6px;
+    padding: 4px 8px;
+    border-radius: 10px;
+}

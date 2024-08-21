@@ -1,0 +1,42 @@
+.list {
+    margin-top: 40px;
+    padding-right: 10px;
+    flex: 1
+}
+.grid {
+    display: grid;
+    grid-template-columns: .5fr 1fr .5fr .5fr .5fr;
+    border-bottom: 1.5px solid #171717;
+    padding-bottom: 10px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+}
+
+@media (max-width: 500px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.list-header {
+    background: #888;
+    font-weight: 600;
+}
+
+.list-item {
+    border-bottom-color: #999;
+    font-family: sans-serif;
+    padding-top: 10px;
+   
+}
+
+.list-item img {
+    width: 50px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.list-item .x {
+    cursor: pointer;
+    font-size: 20px;
+}

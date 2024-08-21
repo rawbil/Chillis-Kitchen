@@ -1,0 +1,13 @@
+
+.footer-video-container {
+    width: 400px;
+    max-width: 90%;
+    margin: 30px  auto 0;
+    z-index: -1;
+    border: none
+}
+
+.footer-video-container video {
+    width: 100%;
+    cursor: pointer;
+}

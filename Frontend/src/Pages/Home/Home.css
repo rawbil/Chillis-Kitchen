@@ -1,0 +1,32 @@
+.home {
+    width: 90%;
+    margin: auto;
+}
+
+.carousel-container {
+    position: relative;
+}
+
+.prev-next {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prev-next svg {
+    background: rgba(255, 217, 0, 0.218);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background .4s;
+    color: #000;
+    font-weight: 600;
+    z-index: 51;
+}
+
+.prev-next svg:hover {
+    background: rgba(255, 217, 0, 0.511)
+}

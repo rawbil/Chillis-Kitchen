@@ -1,0 +1,138 @@
+.hours-location {
+    width: 100%;
+    margin: auto;
+}
+
+.hours-location .header {
+    padding: 20px 10px;
+    background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .5)), url("../../assets/chillis_design10.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 450px;
+    
+}
+
+.hours-location .header .header-content {
+    width: 60%;
+    margin: auto
+}
+
+.hours-location .header h1 {
+    font-family: "Poppins", sans-serif;
+    font-size: max(2rem, 1.6rem);
+    margin-bottom: 20px;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+.hours-location .header label {
+    color: #fff;
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+}
+
+.hours-location .input-cont {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background: #fff;
+    border-radius: 4px;
+    
+}
+
+.hours-location #searchFunc {
+    padding: 14px;
+    font-family: "Outfit", sans-serif;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    color: #555;
+}
+
+.hours-location .input-cont .svg-cont {
+    background: rgb(255, 0, 64);
+    padding: 14px;
+    border-radius: 0 4px;
+    cursor: pointer
+}
+
+.hours-location .input-cont .svg-cont svg {
+    width: 25px;
+    height: 25px;
+    color: #f0f0f0;
+}
+
+@media (max-width: 480px) {
+    .hours-location .header {
+     height: 500px
+    } 
+
+    .hours-location .header .header-content {
+        width: 100%;
+        margin: auto
+    }
+ }
+ 
+ @media(max-width: 280px) {
+    .hours-location #searchFunc {
+        padding: 8px;
+        font-family: "Outfit", sans-serif;
+        flex: 1;
+        border: 0;
+        outline: 0;
+        color: #555;
+        width: fit-content;
+    }
+    
+    .hours-location .input-cont .svg-cont {
+        background: rgb(255, 0, 64);;
+        padding: 8px;
+        border-radius: 0 4px;
+        cursor: pointer
+    }
+    
+    .hours-location .input-cont .svg-cont svg {
+        width: 18px;
+        height: 18px;
+        color: #f0f0f0;
+    }
+ }
+
+ .or {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 20px 0;
+ }
+
+ .or hr {
+    height: 1px;
+    width: 50px;
+ }
+
+ .curr-location {
+    background: rgb(255, 0, 64);
+    padding: 14px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    color: white;
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+    font-weight: bold;
+    gap: 20px;
+    text-transform: uppercase;
+    font-family: "Outfit", sans-serif;
+ }
+
+ .curr-location svg {
+    width: 25px;
+    height: 25px;
+ }

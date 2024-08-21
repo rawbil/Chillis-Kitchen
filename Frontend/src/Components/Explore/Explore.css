@@ -1,0 +1,62 @@
+.explore {
+    margin: 100px 20px;
+    display: flex;
+    justify-content: center;
+    overflow-x: scroll;
+    gap: 20px
+}
+
+@media (max-width: 1115px) {
+    .explore {
+        justify-content: start;
+    }
+}
+
+/* Hide scrollbar in WebKit-based browsers (Chrome, Safari) */
+.explore::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar in Firefox */
+.explore {
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar in IE and Edge (older versions) */
+.explore {
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+
+.explore-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.explore-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all .5s
+}
+
+@media (max-width: 500px) {
+    .explore-item img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.explore-item span {
+    font-weight: 600;
+    padding-top: 10px;
+    white-space: nowrap;
+}
+
+.active-explore {
+    border: 4px solid tomato;
+    padding: 4px
+}

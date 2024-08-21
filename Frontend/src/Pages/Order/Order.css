@@ -1,0 +1,18 @@
+.order {
+    width: 90%;
+    margin: auto;
+}
+
+.order-header-vid video {
+    width: 600px;
+    max-width: 90%;
+    margin: auto;
+    display: grid;
+}
+
+@media (max-width: 500px) {
+    .order {
+        width: 100%;
+        padding: 0 10px;
+    }
+}

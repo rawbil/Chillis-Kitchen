@@ -1,0 +1,145 @@
+.cart {
+    width: 1100px;
+    max-width: 90%;
+    margin: auto 
+}
+
+.cart-img img {
+    width: 200px;
+    max-width: 100%;
+    margin: 0 auto 40px;
+    display: grid;
+}
+
+.cart .cart-heading {
+    display: grid;
+    grid-template-columns: .5fr .5fr .5fr .5fr .5fr .2fr;
+    border-bottom: 1px solid;
+    padding: 10px;
+    align-items: center;
+}
+
+@media (max-width: 330px) {
+    .cart .cart-heading {
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+    }
+}
+
+.heading {
+    background: #3c3c3c;
+    padding: 10px;
+    color: #f0f0f0;
+}
+
+.cart-item img {
+    width: 50px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.cart .remove {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.cart-bottom {
+    margin: 80px auto 0;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 40px;
+    font-family: "Outfit", sans-serif;
+    max-width: 90%;
+    width: 1100px;
+
+}
+
+.cart-bottom .promocode {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.cart-bottom .promocode label {
+    color: #333;
+}
+
+.promocode-input {
+    background: #e8e8e8;
+    display: flex;
+    align-items: center;
+    border-radius:6px;
+   
+}
+
+.promocode-input input {
+    flex: 1;
+    padding: 14px;
+    border-radius: 6px 0 0 6px;
+    background: transparent;
+    border: 0;
+    outline: none;
+}
+
+.promocode-input button {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    padding: 14px 25px;
+    border-radius: 0 6px 6px 0;
+    border: 0;
+}
+
+.cart-total h2 {
+    padding-bottom: 20px;
+}
+
+.cart-total-details {
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #222;
+}
+
+.total {
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.cart-total button {
+    background: tomato;
+    color: #f0f0f0;
+    padding: 10px;
+    border: 0;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: 2px 2px;
+    transition: all .4s
+}
+
+.cart-total button:hover {
+    box-shadow: 2px 2px #000;
+}
+
+@media (min-width: 700px) {
+    .cart-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 100px
+    }
+
+    .cart-bottom .cart-total {
+        flex: 1
+    }
+
+    .cart-bottom .promocode {
+        flex: 1;
+    }
+}

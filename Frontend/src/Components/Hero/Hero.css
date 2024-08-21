@@ -1,0 +1,55 @@
+.heroitems {
+    display: flex;
+    overflow: hidden;
+    width: 100%
+}
+
+.hero-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 30px;
+    min-width: 100%;
+    height: 30rem;
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .2));
+    background-size: cover;
+    color: #fff;
+    border-radius: 4px;
+    transition: all 1s;
+    z-index: 50;
+
+}
+
+@media(min-width: 1000px) {
+    .hero-item {
+        height: 74vh;
+    }
+}
+
+.hero-item .heading {
+    font-size: max(4vw, 2rem);
+    text-transform: uppercase;
+    font-weight: 100;
+    background: transparent;
+}
+
+.hero-item .description {
+    font-size: 22px;
+}
+
+.hero-item button {
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid gold;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .5s
+}
+
+.hero-item button:hover {
+    background: rgba(255, 217, 0, 0.555)
+}

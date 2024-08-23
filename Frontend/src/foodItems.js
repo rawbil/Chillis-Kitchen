@@ -319,6 +319,14 @@ const foodItems = [
     price: 26,
     category: "Seafood"
   },
+  {
+    id: 41,
+    title: "seafood7",
+    description: "Never gets spicier",
+    image: sea3,
+    price: 26,
+    category: "Seafood"
+  }
 ];
 
 export default foodItems;

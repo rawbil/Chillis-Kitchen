@@ -6,6 +6,7 @@ export const AppContext = createContext();
 
 const ProviderFunction = (props) => {
   const [cartItems, setCartItems] = useState({});
+  const url = 'https://localhost:8000';
 
   function addToCart(itemId) {
     if(!cartItems[itemId]) {
@@ -44,7 +45,8 @@ const ProviderFunction = (props) => {
         removeFromCart,
         cartItems, 
         foodItems,
-        getTotalCartAmount
+        getTotalCartAmount,
+        url
       }}
     >
       {props.children}

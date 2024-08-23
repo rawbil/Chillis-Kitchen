@@ -8,27 +8,27 @@ import { AppContext } from "../Context/AppContext";
 
 const SingleItem = ({ item }) => {
   //const [added, setAdded] = useState(0);
-  const {cartItems, addToCart, removeFromCart} = useContext(AppContext);
+  const {cartItems, addToCart, removeFromCart, url} = useContext(AppContext);
   return (
     <div className="single-item">
-      <img src={item.image} alt="" className="main-img" />
+      <img src={`${url}/images/${item.image}`} alt="" className="main-img" />
       <div className="content">
-        <h2>{item.title}</h2>
+        <h2>{item.name}</h2>
         <p className="description">{item.description}</p>
         <p className="price">${item.price}</p>
         <div className="buttons">
-        {!cartItems[item.id] ? (
+        {!cartItems[item._id] ? (
          <img
             src={add_white}
             alt=""
             className="add-white"
-            onClick={() => addToCart(item.id)}
+            onClick={() => addToCart(item._id)}
           /> 
         ) : (
           <div className="add-remove">
-            <img src={remove_icon} alt="" onClick={() => removeFromCart(item.id)}/>
-            <p>{cartItems[item.id]}</p>
-            <img src={add_green} alt="" onClick={() => addToCart(item.id)}/>
+            <img src={remove_icon} alt="" onClick={() => removeFromCart(item._id)}/>
+            <p>{cartItems[item._id]}</p>
+            <img src={add_green} alt="" onClick={() => addToCart(item._id)}/>
           </div>
         )}
         </div>

@@ -5,7 +5,7 @@ import { AppContext } from "../../Components/Context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { foodItems, cartItems, removeFromCart, getTotalCartAmount } = useContext(AppContext);
+  const { foodItems, cartItems, removeFromCart, getTotalCartAmount, url } = useContext(AppContext);
   const navigate = useNavigate();
   return (
     <>
@@ -23,15 +23,15 @@ const Cart = () => {
         </div>
         <br />
         {foodItems.map((item, index) => {
-          if (cartItems[item.id] > 0) {
+          if (cartItems[item._id] > 0) {
             return (
               <div className="cart-heading cart-item" key={index}>
-                <img src={item.image} alt="" />
-                <p className="title">{item.title}</p>
+                <img src={`${url}/images/${item.image}`} alt="" />
+                <p className="title">{item.name}</p>
                 <p className="price">${item.price}</p>
-                <p className="quantity">{cartItems[item.id]}</p>
-                <p className="total">${item.price * cartItems[item.id]}</p>
-                <p className="remove" onClick={() => removeFromCart(item.id)}>
+                <p className="quantity">{cartItems[item._id]}</p>
+                <p className="total">${item.price * cartItems[item._id]}</p>
+                <p className="remove" onClick={() => removeFromCart(item._id)}>
                   x
                 </p>
               </div>

@@ -1,34 +1,43 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
-import foodItems from "../../foodItems";
+import { createContext, useEffect, useState } from "react";
+//import foodItems from "../../foodItems";
+import axios from "axios";
 
 export const AppContext = createContext();
 
 const ProviderFunction = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url = 'http://localhost:8000';
+  const [foodItems, setFoodItems] = useState([]);
+  const url = "http://localhost:8000";
   const [token, setToken] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
+
+    fetchFoodItems();
+  }, []);
 
   function addToCart(itemId) {
-    if(!cartItems[itemId]) {
-      setCartItems(prev => ({...prev, [itemId]: 1}))
-    }
-    else {
-      setCartItems(prev => ({...prev, [itemId]: prev[itemId] + 1}));
+    if (!cartItems[itemId]) {
+      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
+    } else {
+      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
   }
 
   function removeFromCart(itemId) {
-    setCartItems(prev => ({...prev, [itemId]: prev[itemId] - 1}))
-
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   }
 
   function getTotalCartAmount() {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemInfo = foodItems.find(product => product.id === Number(item));
-        
+        let itemInfo = foodItems.find(
+          (product) => product._id === item
+        );
+
         if (itemInfo) {
           totalAmount += itemInfo.price * cartItems[item];
         } else {
@@ -38,17 +47,29 @@ const ProviderFunction = (props) => {
     }
     return totalAmount;
   }
-  
+
+  async function fetchFoodItems() {
+    try {
+      const response = await axios.get(`${url}/api/food/list`);
+      if (response.data.success) {
+        setFoodItems(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
         addToCart,
         removeFromCart,
-        cartItems, 
+        cartItems,
         foodItems,
+        setFoodItems,
         getTotalCartAmount,
         url,
-        token, 
+        token,
         setToken,
       }}
     >

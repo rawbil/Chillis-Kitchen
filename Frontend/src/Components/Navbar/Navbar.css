@@ -25,7 +25,7 @@
 }
 
 .nav-logo img {
-    width: 200px;
+    width: 120px;
     transition: all;
    }
 
@@ -81,13 +81,14 @@
     z-index: 20;
     cursor: pointer;
     position: absolute;
-    top: auto;
+    top: 30px;
     right: 2rem;
     display: none;
 }
 
 .ul-parent {
     display: flex;
+    align-items: center;
 }
 
 .nav-black .svg-bar {
@@ -177,6 +178,77 @@
     top: -10px;
     right: -10px;
     border-radius: 50%;
+}
+
+.logout-btn,
+.signup-btn {
+    margin-left: 10px;
+    padding: 6px 10px;
+    cursor: pointer;
+    border: 2px solid #000;
+}
+
+.nav-black .logout-btn,
+.nav-black .signup-btn {
+    border: 2px solid gold;
+}
+
+.logout-inner {
+    position: relative;
+    padding-left: 30px;
+}
+
+.logout-inner .img {
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid;
+    padding: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-black .logout-inner .img {
+    border: 2px solid #fff;
+}
+
+.logout-inner ul {
+    position : absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+
+.logout-inner:hover  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #000;
+    padding: 12px 25px;
+    border-radius: 4px;
+    outline: 2px solid gold;
+    overflow: hidden;
+    color: gold;
+}
+
+.logout-inner ul li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px ;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .5s;
+}
+
+.logout-inner ul  li:hover {
+    background: #fff;
+    border-radius: 4px;
+    color: #000;
+}
+
+.logout-inner ul li img {
+    width: 20px;
+    height: 20px
 }
 
 /* @media(max-width: 1230px) {
@@ -290,8 +362,8 @@
         color: #000;
     }
 
-    .nav-logo img{
-        width: 120px;
+    .nav-logo-img{
+        width: 100px;
        }
 
     .nav-events-content {
@@ -310,6 +382,10 @@
 
     .svg-bar {
         display: block;
+    }
+
+    .svg-bar-login {
+        top: auto
     }
 
     /* nav-cart */
@@ -336,18 +412,42 @@
         border-radius: 50%;
     }
 
-  }
+    .logout-btn,
+    .signup-btn {
+        padding: 4px 8px;
+    }
 
-.logout-btn,
-.signup-btn {
-    margin-left: 10px;
-    padding: 6px 10px;
-    cursor: pointer;
-    border: 2px solid #000;
+    .nav-black .logout-btn,
+.nav-black .signup-btn {
+    color: gold;
 }
 
-@media(max-width: 300px) {
-    .nav-logo img {
-        width: 30%;
+  }
+
+@media(max-width: 350px) {
+    .logout-container {
+        right: 70px
     }
+    .nav-logo .nav-logo-img {
+       width: 30%
+    }
+
+    .svg-bar {
+        top: 20px
+    }
+    
+    .svg-bar-login {
+        top: 30px
+    }
+}
+
+@media (max-width: 290px) {
+    .svg-bar {
+        top: 16px
+    }
+
+    .svg-bar-login {
+        top: 20px
+    }
+   
 }

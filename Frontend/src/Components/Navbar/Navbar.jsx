@@ -1,8 +1,9 @@
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import nav_logo from "../../assets/chilli-logo.png";
 import profile from '../../assets/profile_icon.png'
 import basket from '../../assets/bag_icon.png';
+import logout from '../../assets/logout_icon.png'
 import { useContext, useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "react-feather";
 import { FaShoppingCart } from "react-icons/fa";
@@ -27,13 +28,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", navScroll);
   }, []);
 
-  useEffect(() => {
-    localStorage.getItem("token");
-  }, []);
+  const navigate = useNavigate();
+
+  function logoutFunc() {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/")
+  }
+
+
   return (
     <nav className={`nav ${location.pathname !== "/" ? "nav-black" : ""}`}>
       <RouterLink to={"/"} className="nav-logo" ref={logoRef}>
-        <img src={nav_logo} alt="" width={120} />
+        <img src={nav_logo} alt="" width={120} className="nav-logo-img" />
       </RouterLink>
 
       <div className="ul-parent">
@@ -145,19 +152,6 @@ const Navbar = () => {
           </RouterLink>
         </li>
 
-        <li>
-          {!token && (
-            <RouterLink
-              to={"signup"}
-              className={`nav-link signup-btn ${
-                location.pathname === "/signup" ? "active-nav" : ""
-              }`}
-              onClick={() => setShowMenu(false)}
-            >
-              Sign Up
-            </RouterLink>
-          )}
-        </li>
         {token && (
           <div className="nav-cart-container">
             <RouterLink
@@ -173,16 +167,28 @@ const Navbar = () => {
 
         
       </ul>
-      {token && (
-          <div className="logout-container">
+      <div className="logout-container">
+      {token ? (
             <div className="logout-inner">
-              <img src={profile} alt="" />
+              <img src={profile} alt="" className="img"/>
               <ul>
-                <li><img src={basket} alt="" /></li>
+                <li><img src={basket} alt="" /><p>Orders</p></li>
+                <li onClick={logoutFunc}><img src={logout} alt="" /><p>Logout</p></li>
               </ul>
             </div>
-          </div>
-        )}
+          
+        ): (
+          
+          <RouterLink
+            to={"signup"}
+            className={`nav-link signup-btn ${
+              location.pathname === "/signup" ? "active-nav" : ""
+            }`}
+            onClick={() => setShowMenu(false)}
+          >
+            Signup
+          </RouterLink>
+        )}</div>
       </div>
       {showMenu ? (
         <svg
@@ -203,7 +209,7 @@ const Navbar = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="svg-bar"
+          className={`svg-bar ${token ? 'svg-bar-login' : ''}`}
           onClick={() => setShowMenu(true)}
         >
           <path

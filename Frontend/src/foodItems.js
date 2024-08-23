@@ -289,7 +289,7 @@ const foodItems = [
   },
   {
     id: 37,
-    title: "seafood1",
+    title: "seafood3",
     description: "Never get spicier",
     image: sea4,
     price: 26,
@@ -297,7 +297,7 @@ const foodItems = [
   },
   {
     id: 38,
-    title: "seafood1",
+    title: "seafood4",
     description: "Never get spicier",
     image: sea5,
     price: 26,
@@ -305,7 +305,7 @@ const foodItems = [
   },
   {
     id: 39,
-    title: "seafood1",
+    title: "seafood5",
     description: "Never get spicier",
     image: sea6,
     price: 26,
@@ -313,7 +313,7 @@ const foodItems = [
   },
   {
     id: 40,
-    title: "seafood1",
+    title: "seafood6",
     description: "Never get spicier",
     image: sea7,
     price: 26,

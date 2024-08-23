@@ -26,13 +26,13 @@ import chicken4 from './assets/chicken4.jpg'
 import chicken5 from './assets/chicken5.jpg'
 import chicken6 from './assets/chicken6.jpg'
 
-/* import sea1 from './assets/seafood1.jpg'
+import sea1 from './assets/seafood1.jpg'
 import sea2 from './assets/seafood2.jpg'
-//import sea3 from './assets/seafood3.jpg'
+import sea3 from './assets/seafood3.jpg'
 import sea4 from './assets/seafood4.jpg'
 import sea5 from './assets/seafood5.jpg'
 import sea6 from './assets/seafood6.jpg'
-import sea7 from './assets/seafood7.jpg' */
+import sea7 from './assets/seafood7.jpg'
 
 import k1 from './assets/ketchup1.jpg'
 import k2 from './assets/ketchup2.jpg'
@@ -236,55 +236,7 @@ const foodItems = [
     price: 19,
     category: "Chicken"
   },
-  //Seafood
-/*   {
-    id: 25,
-    title: "seafood1",
-    description: "Never get spicier",
-    image: sea1,
-    price: 26,
-    category: "Seafood"
-  },
-  {
-    id: 27,
-    title: "seafood2",
-    description: "Never get spicier",
-    image: sea2,
-    price: 26,
-    category: "Seafood"
-  },
-  {
-    id: 27,
-    title: "seafood1",
-    description: "Never get spicier",
-    image: sea4,
-    price: 26,
-    category: "Seafood"
-  },
-  {
-    id: 28,
-    title: "seafood1",
-    description: "Never get spicier",
-    image: sea5,
-    price: 26,
-    category: "Seafood"
-  },
-  {
-    id: 29,
-    title: "seafood1",
-    description: "Never get spicier",
-    image: sea6,
-    price: 26,
-    category: "Seafood"
-  },
-  {
-    id: 30,
-    title: "seafood1",
-    description: "Never get spicier",
-    image: sea7,
-    price: 26,
-    category: "Seafood"
-  }, */
+  
   //ketchup
   {
     id: 31,
@@ -317,6 +269,55 @@ const foodItems = [
     image: k4,
     price: 30,
     category: "Ketchup"
+  },
+  //Seafood
+  {
+    id: 35,
+    title: "seafood1",
+    description: "Never get spicier",
+    image: sea1,
+    price: 26,
+    category: "Seafood"
+  },
+  {
+    id: 36,
+    title: "seafood2",
+    description: "Never get spicier",
+    image: sea2,
+    price: 26,
+    category: "Seafood"
+  },
+  {
+    id: 37,
+    title: "seafood1",
+    description: "Never get spicier",
+    image: sea4,
+    price: 26,
+    category: "Seafood"
+  },
+  {
+    id: 38,
+    title: "seafood1",
+    description: "Never get spicier",
+    image: sea5,
+    price: 26,
+    category: "Seafood"
+  },
+  {
+    id: 39,
+    title: "seafood1",
+    description: "Never get spicier",
+    image: sea6,
+    price: 26,
+    category: "Seafood"
+  },
+  {
+    id: 40,
+    title: "seafood1",
+    description: "Never get spicier",
+    image: sea7,
+    price: 26,
+    category: "Seafood"
   },
 ];
 

@@ -1,60 +1,80 @@
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import nav_logo from "../../assets/chilli-logo.png";
+import profile from '../../assets/profile_icon.png'
+import basket from '../../assets/bag_icon.png';
 import { useContext, useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "react-feather";
 import { FaShoppingCart } from "react-icons/fa";
 import OutsideClickHandler from "react-outside-click-handler";
 import { AppContext } from "../Context/AppContext";
 
-
 const Navbar = () => {
   const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
   const [dropdownOn, setDropdownOn] = useState(false);
   const logoRef = useRef();
-  const {getTotalCartAmount} = useContext(AppContext)
+  const { getTotalCartAmount, token, setToken } = useContext(AppContext);
   useEffect(() => {
     const navScroll = window.addEventListener("scroll", () => {
-      if(window.scrollY > 100) {
-        logoRef.current.classList.add("logo-ref")
+      if (window.scrollY > 100) {
+        logoRef.current.classList.add("logo-ref");
+      } else {
+        logoRef.current.classList.remove("logo-ref");
       }
-      else {
-        logoRef.current.classList.remove("logo-ref")
-      }
-    })
+    });
 
-    return() => window.removeEventListener("scroll", navScroll)
+    return () => window.removeEventListener("scroll", navScroll);
+  }, []);
+
+  useEffect(() => {
+    localStorage.getItem("token");
   }, []);
   return (
-    <nav className={`nav ${location.pathname !== '/' ? 'nav-black' : ''}`}>
+    <nav className={`nav ${location.pathname !== "/" ? "nav-black" : ""}`}>
       <RouterLink to={"/"} className="nav-logo" ref={logoRef}>
-        <img src={nav_logo} alt="" width={120} /> 
+        <img src={nav_logo} alt="" width={120} />
       </RouterLink>
 
+      <div className="ul-parent">
       <ul className={`nav-ul ${showMenu ? "show" : ""}`}>
         <li>
           <RouterLink
             to={"/"}
             className={`nav-link ${
               location.pathname === "/" ? "active-nav" : ""
-            }`} onClick={() => setShowMenu(false)}
+            }`}
+            onClick={() => setShowMenu(false)}
           >
             Home
           </RouterLink>
         </li>
         <li>
-          <RouterLink to={'menus'} className={`nav-link ${
+          <RouterLink
+            to={"menus"}
+            className={`nav-link ${
               location.pathname === "/menus" ? "active-nav" : ""
-            }`} onClick={() => setShowMenu(false)}>Menus</RouterLink>
+            }`}
+            onClick={() => setShowMenu(false)}
+          >
+            Menus
+          </RouterLink>
         </li>
         <li>
-          <RouterLink to={'hours&location'} className={`nav-link ${
+          <RouterLink
+            to={"hours&location"}
+            className={`nav-link ${
               location.pathname === "/hours&location" ? "active-nav" : ""
-            }`} onClick={() => setShowMenu(false)}>Hours &amp; Location</RouterLink>
+            }`}
+            onClick={() => setShowMenu(false)}
+          >
+            Hours &amp; Location
+          </RouterLink>
         </li>
         <li className="show-small">
-          <RouterLink className="nav-link " onClick={() => setShowMenu(false)}>Catering</RouterLink>
+          <RouterLink className="nav-link " onClick={() => setShowMenu(false)}>
+            Catering
+          </RouterLink>
         </li>
         <OutsideClickHandler onOutsideClick={() => setDropdownOn(false)}>
           <li className="nav-events-container">
@@ -64,15 +84,23 @@ const Navbar = () => {
               }`}
               onClick={() => setDropdownOn(!dropdownOn)}
             >
-              <span >Private Events</span>
+              <span>Private Events</span>
               <span>{dropdownOn ? <ChevronUp /> : <ChevronDown />}</span>
             </div>
             {dropdownOn ? (
               <div className="nav-events-content">
-                <RouterLink to={'corporate-events'} className="dropdown-link" onClick={() => setDropdownOn(false)}>
+                <RouterLink
+                  to={"corporate-events"}
+                  className="dropdown-link"
+                  onClick={() => setDropdownOn(false)}
+                >
                   Corporate & private events
                 </RouterLink>
-                <RouterLink to={'private-events'} className="dropdown-link" onClick={() => setDropdownOn(false)}>
+                <RouterLink
+                  to={"private-events"}
+                  className="dropdown-link"
+                  onClick={() => setDropdownOn(false)}
+                >
                   Private Events Form
                 </RouterLink>
               </div>
@@ -80,22 +108,27 @@ const Navbar = () => {
           </li>
         </OutsideClickHandler>
         <li>
-          <RouterLink to={'about'} className={`nav-link ${
+          <RouterLink
+            to={"about"}
+            className={`nav-link ${
               location.pathname === "/about" ? "active-nav" : ""
-            }`} onClick={() => setShowMenu(false)}>About</RouterLink>
-        </li>
-        <li>
-          <RouterLink to={'signup'} className={`nav-link ${
-              location.pathname === "/signup" ? "active-nav" : ""
-            }`} onClick={() => setShowMenu(false)}>Sign Up</RouterLink>
-        </li>
-        <li className="show-small">
-          <RouterLink className="nav-link " onClick={() => setShowMenu(false)}>Terms</RouterLink>
+            }`}
+            onClick={() => setShowMenu(false)}
+          >
+            About
+          </RouterLink>
         </li>
         <li className="show-small">
-          <RouterLink className="nav-link " onClick={() => setShowMenu(false)}>Privacy</RouterLink>
+          <RouterLink className="nav-link " onClick={() => setShowMenu(false)}>
+            Terms
+          </RouterLink>
         </li>
-      {/*   <li className="show-small">
+        <li className="show-small">
+          <RouterLink className="nav-link " onClick={() => setShowMenu(false)}>
+            Privacy
+          </RouterLink>
+        </li>
+        {/*   <li className="show-small">
           <RouterLink to={"/signup"} className="nav-link " onClick={() => setShowMenu(false)}>
             Email Sign-up
           </RouterLink>
@@ -111,16 +144,46 @@ const Navbar = () => {
             Order Online
           </RouterLink>
         </li>
-        
-        <div className="nav-cart-container">
-        <RouterLink to={"/cart"} className="nav-cart" onClick={() => setShowMenu(false)}>
-          <FaShoppingCart className="nav-cart-svg" title="cart" />
-          <div className={getTotalCartAmount() > 0 ? 'cart-dot' : ''}></div>
-        </RouterLink>
-      </div>
-      </ul>
-      
 
+        <li>
+          {!token && (
+            <RouterLink
+              to={"signup"}
+              className={`nav-link signup-btn ${
+                location.pathname === "/signup" ? "active-nav" : ""
+              }`}
+              onClick={() => setShowMenu(false)}
+            >
+              Sign Up
+            </RouterLink>
+          )}
+        </li>
+        {token && (
+          <div className="nav-cart-container">
+            <RouterLink
+              to={"/cart"}
+              className="nav-cart"
+              onClick={() => setShowMenu(false)}
+            >
+              <FaShoppingCart className="nav-cart-svg" title="cart" />
+              <div className={getTotalCartAmount() > 0 ? "cart-dot" : ""}></div>
+            </RouterLink>
+          </div>
+        )}
+
+        
+      </ul>
+      {token && (
+          <div className="logout-container">
+            <div className="logout-inner">
+              <img src={profile} alt="" />
+              <ul>
+                <li><img src={basket} alt="" /></li>
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
       {showMenu ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

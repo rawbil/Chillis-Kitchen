@@ -86,6 +86,10 @@
     display: none;
 }
 
+.ul-parent {
+    display: flex;
+}
+
 .nav-black .svg-bar {
     color: gold;
 }
@@ -195,7 +199,7 @@
 
     .nav-ul {
         display: block;
-        position: absolute;
+        position: fixed;
         right: 0;
         left: 0;
         top: 0;
@@ -209,6 +213,16 @@
         overflow-y: auto;
         transform: translateY(-1400px);
         transition: all .4s ease-in-out;
+    }
+
+    .ul-parent {
+        position: relative;
+    }
+
+    .logout-container {
+        position: absolute;
+        top: -14px;
+        right: 140px;
     }
 
     .nav-ul.show {
@@ -324,3 +338,16 @@
 
   }
 
+.logout-btn,
+.signup-btn {
+    margin-left: 10px;
+    padding: 6px 10px;
+    cursor: pointer;
+    border: 2px solid #000;
+}
+
+@media(max-width: 300px) {
+    .nav-logo img {
+        width: 30%;
+    }
+}

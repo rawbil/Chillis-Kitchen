@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import "./Signup.css";
 import { XSquare, Eye, EyeOff } from "react-feather";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ const Signup = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const navigate = useNavigate();
 
-  const { url } = useContext(AppContext);
+  const { url, setToken } = useContext(AppContext);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -40,6 +40,12 @@ const Signup = () => {
           email: "",
           password: ""
         })
+        setToken(response.data.token)
+        localStorage.setItem('token', response.data.token);
+        navigate("/")
+      }
+      else {
+        alert(response.data.message);
       }
     } catch (error) {
       console.log(error);

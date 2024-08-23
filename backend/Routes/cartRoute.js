@@ -2,6 +2,11 @@ const express = require('express');
 const route = express.Router();
 const userModel = require('../Models/userModel');
 
+//authMiddleware
+const authMiddleware = () => {
+    
+}
+
 //POST API/CART/ADD
 route.post("/add", async(req, res) => {
     try {

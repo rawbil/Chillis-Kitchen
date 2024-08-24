@@ -14,20 +14,29 @@ const ProviderFunction = (props) => {
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
     }
-
     fetchFoodItems();
-  }, []);
+  }, []);  
 
-  function addToCart(itemId) {
+  async function addToCart(itemId) {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+
+    if(token) {
+      await axios.post(url + "/api/cart/add", {itemId}, {headers: {token}})
+      
+    }
   }
 
-  function removeFromCart(itemId) {
+  async function removeFromCart(itemId) {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+
+    if(token) {
+      await axios.post(url + "/api/cart/add", {itemId}, {headers: {token}})
+      
+    }
   }
 
   function getTotalCartAmount() {

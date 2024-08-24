@@ -23,20 +23,21 @@ const authMiddleware = async(req, res, next) => {
 //POST API/CART/ADD
 route.post("/add", authMiddleware, async(req, res) => {
     try {
-        const userData = await userModel.findById(req.body.userId);
-        const cartItem = await userData.cartItem;
-        if(!cartItem[req.body.itemId]) {
-            cartItem[req.body.itemId] = 1
-        }
-        else {
-            cartItem[req.body.itemId] += 1;
-        }
+       const userData = await userModel.findOne({_id: req.body.userId});
+       const cartItem = await userData.cartItem;
+       if(!cartItem[req.body.itemId]) {
+        cartItem[req.body.itemId] = 1;
+       }
+       else {
+        cartItem[req.body.itemId] += 1;
+       }
 
-        await userModel.findByIdAndUpdate(req.body.userId, {cartItem});
-        res.json({success: true, message: "Added to cart"});
+       await userModel.findByIdAndUpdate(req.body.userId, {cartItem});
+       res.json({success: true, message: "Added to cart"});
 
     } catch (error) {
-        
+        console.log(error);
+        res.json({success: false, message: "Error"});
     }
 })
 
@@ -62,9 +63,9 @@ route.post('/remove', authMiddleware, async(req, res) => {
 route.post('/get', authMiddleware, async(req, res) => {
     try {
         const userData = await userModel.findById(req.body.userId);
-        const cartItems = await userData.cartItem;
+        const cartItem = await userData.cartItem;
 
-        res.json({success: true, data: cartItems})
+        res.json({success: true, data: cartItem})
 
     } catch (error) {
         console.log(error);
@@ -72,4 +73,4 @@ route.post('/get', authMiddleware, async(req, res) => {
     }
 })
 
-module.exports = route;
+module.exports = route; 

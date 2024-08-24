@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 const authMiddleware = async(req, res, next) => {
     const {token} = req.headers;
     if(!token) {
-       return res.json({success: false, message: "Authorization failed"});
+       return res.json({success: false, message: "Authorization failed, Login again"});
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -16,12 +16,12 @@ const authMiddleware = async(req, res, next) => {
         
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: "Authorization failed"});
+        res.json({success: false, message: "Error"});
     }
 }
 
 //POST API/CART/ADD
-route.post("/add", async(req, res) => {
+route.post("/add", authMiddleware, async(req, res) => {
     try {
         
     } catch (error) {
@@ -30,7 +30,7 @@ route.post("/add", async(req, res) => {
 })
 
 //POST API/CART/REMOVE
-route.post('/remove', async(req, res) => {
+route.post('/remove', authMiddleware, async(req, res) => {
     try {
         
     } catch (error) {
@@ -38,8 +38,8 @@ route.post('/remove', async(req, res) => {
     }
 })
 
-//FETCH CART DATA
-route.post('/get', async(req, res) => {
+//GET API/CART/GET
+route.post('/get', authMiddleware, async(req, res) => {
     try {
         
     } catch (error) {

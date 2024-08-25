@@ -10,31 +10,31 @@ import french from './assets/french.jpeg'
 const exploreItems = [
     {
         image: spicy,
-        name: "Spicy"
+        name: "spicy"
     },
     {
         image: pizza,
-        name: "Pizza"
+        name: "pizza"
     },
     {
         image: icecream,
-        name: "Icecream"
+        name: "icecream"
     },
     {
         image: chicken,
-        name: "Chicken"
+        name: "chicken"
     },
     {
         image: seafood,
-        name: "Seafood"
+        name: "seafood"
     },
     {
         image: ketchup,
-        name: "Ketchup"
+        name: "ketchup"
     },
     {
         image: dessert,
-        name: "Dessert"
+        name: "dessert"
     },
     {
         image: french,

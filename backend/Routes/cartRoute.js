@@ -32,19 +32,41 @@ route.post("/add", authMiddleware, async (req, res) => {
     }
     await userModel.findByIdAndUpdate(req.body.userId, {cartItem});
     res.json({success: true, message: "Added to cart"});
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: "Error"});
+  }
 });
 
 //POST API/CART/REMOVE
 route.post("/remove", authMiddleware, async (req, res) => {
   try {
-  } catch (error) {}
+    let userData = await userModel.findById(req.body.userId);
+    let cartItem = await userData.cartItem;
+    if(cartItem[req.body.itemId] > 0) {
+        cartItem[req.body.itemId] -= 1;
+    }
+    else {
+        cartItem[req.body.itemId] = 0;
+    }
+    await userModel.findByIdAndUpdate(req.body.userId, {cartItem});
+    res.json({success: true, message: "Removed from cart"});
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: "Error"});
+  }
 });
 
 //POST API/CART/GET
 route.post("/get", authMiddleware, async (req, res) => {
   try {
-  } catch (error) {}
+    const userData = await userModel.findById(req.body.userId);
+    const cartItem = await userData.cartItem;
+    res.json({success: true, cartItem})
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: "Error"})
+  }
 });
 
 module.exports = route;

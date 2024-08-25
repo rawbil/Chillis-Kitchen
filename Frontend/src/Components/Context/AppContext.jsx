@@ -24,18 +24,25 @@ const ProviderFunction = (props) => {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
 
-    if(token) {
-      await axios.post(url + "/api/cart/add", {itemId}, {headers: {token}})
-      
-    }
+   if(token) {
+    await axios.post(url + "/api/cart/add", {itemId}, {headers: {token}});
+   }
   }
 
   async function removeFromCart(itemId) {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
 
     if(token) {
-      await axios.post(url + "/api/cart/add", {itemId}, {headers: {token}})
-      
+      await axios.post(url + "/api/cart/remove", {itemId}, {headers: {token}});
+    }
+
+  }
+
+  async function loadCartData(token) {
+    try {
+      const response = await axios.post(url + "/api/cart/get", {})
+    } catch (error) {
+      console.log(error);
     }
   }
 

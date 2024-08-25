@@ -60,3 +60,9 @@
     border: 4px solid tomato;
     padding: 4px
 }
+
+.explore-heading {
+    width: 600px;
+    margin: 20px auto;
+    max-width: 100%;
+}

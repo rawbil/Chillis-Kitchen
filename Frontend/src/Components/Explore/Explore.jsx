@@ -5,14 +5,22 @@ import "./Explore.css";
 const Explore = ({ category, setCategory }) => {
   return (
     <>
-    <h2>Explore Our Menu</h2>
-    <p>Choose from a diverse menu featuring an array of dishes. Our mission is to satisfy your cravings and elevate your dining experience, one meal at a time.</p>
+      <div className="explore-heading">
+        <h2>Explore Our Menu</h2>
+        <p>
+          Choose from a diverse menu featuring an array of dishes. Our mission
+          is to satisfy your cravings and elevate your dining experience, one
+          meal at a time.
+        </p>
+      </div>
       <div className="explore">
         {exploreItems.map((item, index) => (
           <div
             key={index}
             className="explore-item"
-            onClick={() => setCategory(prev => prev === item.name ? "All" : item.name) }
+            onClick={() =>
+              setCategory((prev) => (prev === item.name ? "All" : item.name))
+            }
           >
             <img
               src={item.image}

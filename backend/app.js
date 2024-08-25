@@ -24,7 +24,7 @@ app.use("/api/food", foodRoute);
 app.use("/api/user", userRoute);
 app.use("/api/cart", cartRoute);
 
-app.use("/images", express.static("uploads"))
+app.use("/images", express.static("uploads"));
 
 //ERROR PAGE
 app.use((req, res) => {

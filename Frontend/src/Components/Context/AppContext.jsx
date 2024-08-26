@@ -13,6 +13,7 @@ const ProviderFunction = (props) => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
+      loadCartData(localStorage.getItem("token"))
     }
     fetchFoodItems();
   }, []);  
@@ -40,7 +41,10 @@ const ProviderFunction = (props) => {
 
   async function loadCartData(token) {
     try {
-      const response = await axios.post(url + "/api/cart/get", {})
+      const response = await axios.post(url + "/api/cart/get", {}, {headers: {token}})
+      if(response.data.success) {
+        setCartItems(response.data.cartItem);
+      }
     } catch (error) {
       console.log(error);
     }

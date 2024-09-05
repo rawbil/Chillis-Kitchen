@@ -38,7 +38,7 @@ const exploreItems = [
     },
     {
         image: french,
-        name: "French Dishes"
+        name: "french_dishes"
     }
 ]
 

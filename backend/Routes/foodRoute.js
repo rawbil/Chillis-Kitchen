@@ -37,14 +37,14 @@ const upload = multer({storage: storage})
 //POST API/FOOD/ADD
 route.post('/add',upload.single('image'), async(req, res) => {
     try {
-        const image_filename = `${req.file.filename}`;
+        const image_url = req.file.path; //Cloudinary provides the url in `req.file.path`
         const {name, description, price, category} = req.body;
         const newFood = await foodModel.create({
             name,
             description,
             price, 
             category, 
-            image: image_filename
+            image: image_url //store the image in the database
         });
         console.log(newFood);
         res.json({success: true, message: "Food Added"})
@@ -59,7 +59,11 @@ route.post('/add',upload.single('image'), async(req, res) => {
 route.post('/remove', async(req, res) => {
     try {
         const food = await foodModel.findById(req.body._id);
-        fs.unlink(`uploads/${food.image}`, () => {})
+
+        //Also remove the image from the storage
+        //Extract the public_id from the image URL (assuming image URL includes public_id);
+        const public_id = food.image.split('/').pop.split('.')[0];
+        await cloudinary.uploader.destroy(public_id)
 
         const foodItem = await foodModel.findByIdAndDelete(req.body._id);
         res.json({success: true, message: "Deleted"})

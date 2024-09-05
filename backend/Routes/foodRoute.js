@@ -4,7 +4,7 @@ const foodModel = require('../Models/foodModel');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2; //version 2 for the latest api
 const { CloudinaryStorage } = require('multer-storage-cloudinary'); //cloudinary storage
-const fs = require('fs');
+
 
 //image storage engine
 /* const storage = multer.diskStorage({
@@ -25,12 +25,10 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: {
-            folder: 'food_images', //Optional: Specify a folder for the images in cloudinary
-            /* allowed_formats: ['jpg', 'jpeg', 'png'],  *///Optional: restrict formats
-        }
+        folder: 'food_images', // Specify a folder for the images in Cloudinary
+        allowedFormats: ['jpg', 'jpeg', 'png'], // Optionally restrict formats
     }
-})
+});
 
 const upload = multer({storage: storage}) 
 

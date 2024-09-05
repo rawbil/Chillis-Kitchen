@@ -29,6 +29,9 @@ const Add = ({ url }) => {
     formData.append('price', Number(data.price))
     formData.append('image', image)
     try {
+      for(let pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`)
+      }
       const response = await axios.post(`${url}/api/food/add`, formData);
       if (response.data.success) {
         setImage(null);

@@ -46,7 +46,7 @@ const foodItems = [
     title: "Spicy1",
     description: "Never gets spicier",
     price: 23,
-    category: "Spicy"
+    category: "spicy"
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ const foodItems = [
     title: "Spicy2",
     description: "Never gets spicier",
     price: 10,
-    category: "Spicy"
+    category: "spicy"
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ const foodItems = [
     title: "Spicy3",
     description: "Never gets spicier",
     price: 20,
-    category: "Spicy"
+    category: "spicy"
   },
   {
     id: 4,
@@ -70,7 +70,7 @@ const foodItems = [
     title: "Spicy4",
     description: "Never gets spicier",
     price: 12,
-    category: "Spicy"
+    category: "spicy"
   },
   {
     id: 5,
@@ -78,7 +78,7 @@ const foodItems = [
     title: "Spicy5",
     description: "Never gets spicier",
     price: 11,
-    category: "Spicy"
+    category: "spicy"
   },
   {
     id: 6,
@@ -86,7 +86,7 @@ const foodItems = [
     title: "Spicy6",
     description: "Never gets spicier",
     price: 10,
-    category: "Spicy"
+    category: "spicy"
   },
   {
     id: 7,
@@ -94,7 +94,7 @@ const foodItems = [
     title: "Spicy7",
     description: "Never gets spicier",
     price: 18,
-    category: "Spicy"
+    category: "spicy"
   },
   {
     id: 8,
@@ -102,7 +102,7 @@ const foodItems = [
     title: "Spicy8",
     description: "Never gets spicier",
     price: 13,
-    category: "Spicy"
+    category: "spicy"
   },
   //Pizza
   {

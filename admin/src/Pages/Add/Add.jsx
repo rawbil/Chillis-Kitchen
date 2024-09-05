@@ -11,7 +11,7 @@ const Add = ({ url }) => {
   const [data, setData] = useState({
     name: "",
     description: "",
-    category: "Salad",
+    category: "",
     price: "",
   });
   function handleOnchange(e) {
@@ -107,7 +107,8 @@ const Add = ({ url }) => {
               onChange={handleOnchange}
               value={data.category}
             >
-              <option value="spicy">Spicy</option>
+              <option value="">**Choose the category**</option>
+              <option value="spicy">spicy</option>
               <option value="pizza">Pizza</option>
               <option value="icecream">Icecream</option>
               <option value="chicken">Chicken</option>

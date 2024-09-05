@@ -13,8 +13,8 @@ const SingleItem = ({ item }) => {
     <div className="single-item">
       <img src={`${url}/images/${item.image}`} alt="" className="main-img" />
       <div className="content">
-        <h2>{item.name}</h2>
-        <p className="description">{item.description}</p>
+        <h2>{item.name ? item.name.slice(0, 10) + "..." : ""}</h2>
+        <p className="description">{item.description ? item.description.slice(0, 20) + "..." : ""}</p>
         <p className="price">${item.price}</p>
         <div className="buttons">
         {!cartItems[item._id] ? (

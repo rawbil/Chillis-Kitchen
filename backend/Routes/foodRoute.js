@@ -2,15 +2,9 @@ const express = require('express');
 const route = express.Router();
 const foodModel = require('../Models/foodModel');
 const multer = require('multer');
-const cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary').v2; //version 2 for the latest api
+const { CloudinaryStorage } = require('multer-storage-cloudinary'); //cloudinary storage
 const fs = require('fs');
-
-//set up cloudinary configuration
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-})
 
 //image storage engine
 /* const storage = multer.diskStorage({
@@ -19,8 +13,26 @@ cloudinary.config({
         return cb(null, `${Date.now()}${file.originalname.trim()}`);
     }
 }) */
-const storage = multer.memoryStorage();
-const upload = multer({storage: storage})
+
+//set up cloudinary configuration
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
+//set up Cloudinary storage for Multer
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: {
+            folder: 'food_images', //Optional: Specify a folder for the images in cloudinary
+            /* allowed_formats: ['jpg', 'jpeg', 'png'],  *///Optional: restrict formats
+        }
+    }
+})
+
+const upload = multer({storage: storage}) 
 
 //POST API/FOOD/ADD
 route.post('/add',upload.single('image'), async(req, res) => {

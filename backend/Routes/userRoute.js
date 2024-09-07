@@ -3,7 +3,7 @@ const route  = express.Router();
 const userModel = require('../Models/userModel');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');//install this!!!
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 //POST API/USER/LOGIN
 route.post("/login", async(req, res) => {

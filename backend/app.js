@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8000;
 const foodRoute = require('./Routes/foodRoute');
 const userRoute = require('./Routes/userRoute');
 const cartRoute = require("./Routes/cartRoute");
-const cors = require('cors')
+const cors = require('cors');
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODBURI)
 .then(() => {

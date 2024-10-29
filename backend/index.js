@@ -36,6 +36,11 @@ app.use("/api/cart", cartRoute);
 
 app.use("/images", express.static("uploads"));
 
+//welcome page
+app.get('/', (req, res) => {
+  res.send("Welcome Home");
+})
+
 //ERROR PAGE
 app.use((req, res) => {
     res.status(404).send("404 Error")

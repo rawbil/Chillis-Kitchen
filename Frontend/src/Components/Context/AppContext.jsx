@@ -8,7 +8,7 @@ export const AppContext = createContext();
 const ProviderFunction = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [foodItems, setFoodItems] = useState([]);
-  const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+  const url =  "http://localhost:8000" || import.meta.env.VITE_BACKEND_URL;
   const [token, setToken] = useState("");
   useEffect(() => {
     if (localStorage.getItem("token")) {

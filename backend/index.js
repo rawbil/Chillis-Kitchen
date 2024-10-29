@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODBURI)
 //END OF IMPORTS
 
 const corsOptions = {
-  origin: ["https://chilliskitchen-online.vercel.app"],
+  origin: ["http://localhost:5173","https://chilliskitchen-online.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "token"],

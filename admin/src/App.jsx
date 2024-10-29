@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import {ToastContainer} from 'react-toastify'
 
 const App = () => {
-  const url = 'http://localhost:8000'
+  const url = import.meta.env.BACKEND_URL || 'http://localhost:8000'
   return (
     <div className="app">
       <ToastContainer/>

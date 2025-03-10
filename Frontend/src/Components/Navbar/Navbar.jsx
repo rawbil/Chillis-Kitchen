@@ -15,13 +15,16 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [dropdownOn, setDropdownOn] = useState(false);
   const logoRef = useRef();
+  const navRef = useRef();
   const { getTotalCartAmount, token, setToken } = useContext(AppContext);
   useEffect(() => {
     const navScroll = window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 60) {
         logoRef.current.classList.add("logo-ref");
+        navRef.current.classList.add("nav-scroll")
       } else {
         logoRef.current.classList.remove("logo-ref");
+        navRef.current.classList.remove("nav-scroll")
       }
     });
 
@@ -38,7 +41,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className={`nav ${location.pathname !== "/" ? "nav-black" : ""}`}>
+    <nav className={`nav ${location.pathname !== "/" ? "nav-black" : ""}`} ref={navRef}>
       <RouterLink to={"/"} className="nav-logo" ref={logoRef}>
         <img src={nav_logo} alt="" width={120} className="nav-logo-img" />
       </RouterLink>

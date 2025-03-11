@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODBURI)
 //END OF IMPORTS
 
 const corsOptions = {
-  origin: ["https://chilliskitchen-online.vercel.app"],
+  origin: ["https://chilliskitchen-online.vercel.app", 'http://localhost:5173'],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "token"],
@@ -24,6 +24,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+// Add before your routes
+app.options('*', cors(corsOptions)); // Handle preflight requests
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))

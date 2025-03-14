@@ -14,7 +14,7 @@
 }
 
 @media(min-width: 1000px) {
-    .nav-scroll {
+     .nav-scroll {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -24,20 +24,23 @@
         z-index: 100;
         background: gold;
         margin-bottom: 0px;
-        padding-bottom: 0px;
-
-    }
+        padding-top: 10px; 
+        padding-bottom: 0;
+        transform: translateY(-20px)
+    } 
 
     .nav-scroll.nav-black {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         position: sticky;
         top: 0;
         z-index: 100;
         background: #000;
-        margin-bottom: 20px;
-        padding-bottom: 20px;
+       transform: translateY(-20px);
+       padding-bottom: 10px ;
+       padding-top: 10px;
+       margin-bottom: 20px;
         transition: all;
         transition-duration: 1000;
         transition-timing-function: ease-in-out;
@@ -71,6 +74,7 @@
         width: 180px;
         transition: all
     }
+
 }
 
 

@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import "./SingleItem.css";
-import PropTypes from "prop-types";
 import add_green from "../../assets/add_icon_green.png";
 import add_white from "../../assets/add_icon_white.png";
 import remove_icon from "../../assets/remove_icon_red.png";
@@ -41,10 +41,6 @@ const SingleItem = ({ item }) => {
       </div>
     </div>
   );
-};
-
-SingleItem.propTypes = {
-  item: PropTypes.object,
 };
 
 export default SingleItem;

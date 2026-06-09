@@ -6,7 +6,7 @@ const foodRoute = require("./Routes/foodRoute");
 const userRoute = require("./Routes/userRoute");
 const cartRoute = require("./Routes/cartRoute");
 const cors = require("cors");
-import { v2 as cloudinary } from "cloudinary";
+const cloudinary = require("cloudinary").v2;
 const mongoose = require("mongoose");
 mongoose
   .connect(process.env.MONGODBURI)

@@ -9,9 +9,15 @@ import { AppContext } from "../Context/AppContext";
 const SingleItem = ({ item }) => {
   //const [added, setAdded] = useState(0);
   const {cartItems, addToCart, removeFromCart, url} = useContext(AppContext);
+  const imageUrl = item.image?.url || (
+    typeof item.image === "string" && item.image.startsWith("http")
+      ? item.image
+      : `${url}/images/${item.image}`
+  );
+
   return (
     <div className="single-item">
-      <img src={`${url}/images/${item.image}`} alt="" className="main-img" />
+      <img src={imageUrl} alt="" className="main-img" />
       <div className="content">
         <h2>{item.name ? item.name.slice(0, 10) + "..." : ""}</h2>
         <p className="description">{item.description ? item.description.slice(0, 20) + "..." : ""}</p>

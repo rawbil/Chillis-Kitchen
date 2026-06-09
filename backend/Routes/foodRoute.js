@@ -1,68 +1,101 @@
-const express = require('express');
+const express = require("express");
 const route = express.Router();
-const foodModel = require('../Models/foodModel');
-// const multer = require('multer');
-const fs = require('fs');
+const foodModel = require("../Models/foodModel");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 
-//image storage engine
-// const storage = multer.diskStorage({
-//     destination: "uploads",
-//     filename: (req, file, cb) => {
-//         return cb(null, `${Date.now()}${file.originalname.trim()}`);
-//     }
-// })
+const upload = multer({ storage: multer.memoryStorage() });
 
-// const upload = multer({storage: storage})
+function uploadToCloudinary(file) {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: "chillis-kitchen/foods" },
+      (error, result) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      },
+    );
+
+    stream.end(file.buffer);
+  });
+}
 
 //POST API/FOOD/ADD
-// route.post('/add',/*upload.single('image'),*/ async(req, res) => {
-//     try {
-//         // const image_filename = `${req.file.filename}`;
-//         const {name, description, price, category} = req.body;
-//         const newFood = await foodModel.create({
-//             name,
-//             description,
-//             price, 
-//             category, 
-//             image: image_filename
-//         });
-//         console.log(newFood);
-//         res.json({success: true, message: "Food Added"})
-        
-//     } catch (error) {
-//         console.log(error);
-//         res.json({success: false, message: "Error"}) 
-//     }
-// })
+route.post("/add", upload.single("image"), async (req, res) => {
+  try {
+    const { name, description, price, category } = req.body;
+
+    if (!name || !description || !price || !category) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide name, description, price and category of food",
+      });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide an image",
+      });
+    }
+
+    const cloud = await uploadToCloudinary(req.file);
+
+    const newFood = await foodModel.create({
+      name,
+      description,
+      price,
+      category,
+      image: {
+        public_id: cloud.public_id,
+        url: cloud.secure_url,
+      },
+    });
+
+    res.json({ success: true, message: "Food Added", data: newFood });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Error" });
+  }
+});
 
 //POST API/FOOD/REMOVE
-// route.post('/remove', async(req, res) => {
-//     try {
-//         const food = await foodModel.findById(req.body._id);
-//         fs.unlink(`uploads/${food.image}`, () => {})
+route.post("/remove", async (req, res) => {
+  try {
+    const food = await foodModel.findById(req.body._id);
 
-//         const foodItem = await foodModel.findByIdAndDelete(req.body._id);
-//         res.json({success: true, message: "Deleted"})
-        
-//     } catch (error) {
-//         console.log(error);
-//         res.json({success: false, message: "Error"});
-//     }
-// })
+    if (!food) {
+      return res.status(404).json({
+        success: false,
+        message: "Food not found",
+      });
+    }
 
+    if (food.image?.public_id) {
+      await cloudinary.uploader.destroy(food.image.public_id);
+    }
 
+    await foodModel.findByIdAndDelete(req.body._id);
+    res.json({ success: true, message: "Deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Error" });
+  }
+});
 
 //GET API/FOOD/LIST
-route.get('/list', async(req, res) => {
-    try {
-        const foodList = await foodModel.find();
-        res.json({success: true, data: foodList})
-        
-    } catch (error) {
-        console.log(error);
-        res.json({success: false, message: "Error"});
-    }
-})
-
+route.get("/list", async (req, res) => {
+  try {
+    const foodList = await foodModel.find();
+    res.json({ success: true, data: foodList });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+});
 
 module.exports = route;

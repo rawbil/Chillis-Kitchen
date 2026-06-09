@@ -7,6 +7,12 @@ import {toast} from 'react-toastify'
 
 const List = ({url}) => {
   const [listItems, setListItems] = useState([]);
+  const getImageUrl = (image) => {
+    if (image?.url) return image.url;
+    if (typeof image === "string" && image.startsWith("http")) return image;
+    return `${url}/images/${image}`;
+  };
+
   useEffect(() => {
     fetchListItems()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,7 +58,7 @@ const List = ({url}) => {
       <div className="list-content">
         {listItems.map((item, index) => (
           <div className="list-item grid" key={index}>
-            <img src={`${url}/images/${item.image}`} alt="" />
+            <img src={getImageUrl(item.image)} alt="" />
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>${item.price}</p>

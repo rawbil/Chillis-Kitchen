@@ -3,11 +3,12 @@ import { useState } from "react";
 import "./Add.css";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import axios from "axios";
-import {toast} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Add = ({ url }) => {
   const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState();
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -20,47 +21,55 @@ const Add = ({ url }) => {
     setData((prev) => ({ ...prev, [name]: value }));
   }
 
-  async function handleSubmit(e) {
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setImage(URL.createObjectURL(file));
+      setImageFile(file);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('description', data.description)
-    formData.append('category', data.category)
-    formData.append('price', Number(data.price))
-    formData.append('image', image)
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("category", data.category);
+    formData.append("price", Number(data.price));
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
     try {
-      for(let pair of formData.entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`)
-      }
       const response = await axios.post(`${url}/api/food/add`, formData);
       if (response.data.success) {
         setImage(null);
+        setImageFile(null);
         setData({
           name: "",
           description: "",
           category: "",
           price: "",
-        })
-        toast.success(response.data.message)
-      }
-      else {
-        toast.error('Error');
+        });
+        toast.success(response.data.message);
+      } else {
+        toast.error("Error Adding Food");
       }
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
-  }
+  };
+
   return (
     <div className="add">
       <form className="form-add" onSubmit={handleSubmit}>
         <label htmlFor="image">
           <div className="upload">
             {image ? (
-              <img
-                src={URL.createObjectURL(image)}
-                alt=""
-                className="upload-img"
-              />
+              <img src={image} alt="" className="upload-img" />
             ) : (
               <>
                 <FaCloudDownloadAlt />
@@ -70,8 +79,9 @@ const Add = ({ url }) => {
           </div>
         </label>
         <input
-          onChange={(e) => setImage(e.target.files[0])}
+          onChange={(e) => handleImageChange(e)}
           type="file"
+          accept="image/*"
           name="image"
           id="image"
           required

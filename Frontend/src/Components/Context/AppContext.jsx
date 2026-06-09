@@ -5,11 +5,15 @@ import axios from "axios";
 
 export const AppContext = createContext();
 
+const backendUrl = (
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://chillis-kitchen-backend.vercel.app"
+).replace(/\/$/, "");
+
 const ProviderFunction = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [foodItems, setFoodItems] = useState([]);
-  const url = "https://chillis-kitchen-backend.vercel.app"|| import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
-  // const url = "http://localhost:8000"
+  const url = backendUrl;
   const [token, setToken] = useState("");
   useEffect(() => {
     if (localStorage.getItem("token")) {

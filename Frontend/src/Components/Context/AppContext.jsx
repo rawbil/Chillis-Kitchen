@@ -8,8 +8,8 @@ export const AppContext = createContext();
 const ProviderFunction = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [foodItems, setFoodItems] = useState([]);
-  // const url = "https://chillis-kitchen-backend.vercel.app"|| import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
-  const url = "http://localhost:8000"
+  const url = "https://chillis-kitchen-backend.vercel.app"|| import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+  // const url = "http://localhost:8000"
   const [token, setToken] = useState("");
   useEffect(() => {
     if (localStorage.getItem("token")) {
